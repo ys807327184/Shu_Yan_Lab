@@ -1,3 +1,4 @@
+package DailyChallenge;
 /*
 Date: 13 July 2021
 Challenge: Isomorphic Strings

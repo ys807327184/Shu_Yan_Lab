@@ -1,3 +1,4 @@
+package DailyChallenge;
 /*
  Date: 9 July 2021
  Challenge: 

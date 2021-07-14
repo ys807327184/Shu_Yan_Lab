@@ -1,3 +1,4 @@
+package DailyChallenge;
 /*
  Date: 12 July 2021
  Challenge: Find Median from Data Stream
