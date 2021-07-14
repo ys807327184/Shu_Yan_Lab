@@ -22,7 +22,7 @@ Developed by: Shu Yan
 */
 public class July_14 {
 	//Version 1
-	public int findPeakElement(int[] nums) {
+	/*public int findPeakElement(int[] nums) {
 		for (int i = 0; i < nums.length; i++) {
 			if (nums.length == 1) {
 				return 0;
@@ -32,6 +32,20 @@ public class July_14 {
 				if (nums[i] > nums[i - 1]) return i;
 			} else {
 				if (nums[i] > nums[i - 1] && nums[i] > nums[i + 1]) return i;
+			}
+		}
+		return -1;
+	}*/
+	//Version 2 Simplified
+	public int findPeakElement(int[] nums) {
+		int left, right;
+		if (nums.length == 1) {
+			return 0;
+		} else {
+			for (int i = 0; i < nums.length; i++) {
+				left = i > 0 ? nums[i - 1] : Integer.MIN_VALUE;
+				right = i < nums.length - 1 ? nums[i + 1] : Integer.MIN_VALUE;
+				if (nums[i] > left && nums[i] > right) return i;
 			}
 		}
 		return -1;
