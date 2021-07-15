@@ -19,8 +19,6 @@ Challenge: Custom Sort String
 		order and str consist of lowercase letters only.
 Developed by: Shu Yan
 */
-import java.util.HashMap;
-import java.util.Iterator;
 public class July_15 {
 	//Version 1 Wrong Answer
 	/*public String customSortString(String order, String str) {
@@ -90,6 +88,7 @@ public class July_15 {
 		}
 		return new String(result);
 	}*/
+	
 	//Version 4 Realized letters can be converted to int using differences between chars
 	public String customerSortString(String order, String str) {
 		int[] sortingArray = new int[26];
