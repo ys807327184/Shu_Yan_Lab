@@ -20,6 +20,7 @@ Challenge: Custom Sort String
 Developed by: Shu Yan
 */
 import java.util.HashMap;
+import java.util.Iterator;
 public class July_15 {
 	//Version 1 Wrong Answer
 	/*public String customSortString(String order, String str) {
@@ -54,5 +55,39 @@ public class July_15 {
 			}
 		}
 		return new String(sorted);
+	}*/
+	//Version 3 Even worse
+	/*public String customerSortString(String order, String str) {
+		HashMap<Character, Integer> map = new HashMap<>();
+		HashMap<Character, Integer> repeat = new HashMap<>();
+		for (int i = 0; i < order.length(); i++) {
+			map.put(order.charAt(i), i);
+		}
+		for (int i = 0; i < str.length(); i++) {
+			if (repeat.containsKey(str.charAt(i))) {
+				repeat.put(str.charAt(i), repeat.get(str.charAt(i)) + 1);
+			} else {
+				repeat.put(str.charAt(i), 1);
+			}
+		}
+		char[] result = new char[str.length()];
+		Iterator<Character> it = map.keySet().iterator();
+		int lastIndex = str.length() - 1;
+		int firstIndex = 0;
+		while (it.hasNext()) {
+			Character next = it.next();
+			if (repeat.containsKey(next)) {
+				for (int i = repeat.get(next); i > 0; i--) {
+					result[firstIndex] = next;
+					firstIndex++;
+				}
+			} else {
+				for (int i = repeat.get(next); i > 0; i--) {
+					result[lastIndex] = next;
+					lastIndex--;
+				}
+			}
+		}
+		return new String(result);
 	}*/
 }
