@@ -90,4 +90,17 @@ public class July_15 {
 		}
 		return new String(result);
 	}*/
+	//Version 4 Realized letters can be converted to int using differences between chars
+	public String customerSortString(String order, String str) {
+		int[] sortingArray = new int[26];
+		for (char i : str.toCharArray()) sortingArray[i - 'a']++;
+		StringBuilder result = new StringBuilder();
+		for (char i : order.toCharArray()) {
+			while (sortingArray[i - 'a']-- > 0) result.append(i);
+		}
+		for (int i = 0; i < 26; i++) {
+			while (sortingArray[i]-- > 0) result.append((char)(i + 'a'));
+		}
+		return result.toString();
+	}
 }
