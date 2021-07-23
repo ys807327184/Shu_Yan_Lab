@@ -34,3 +34,23 @@ CREATE TABLE `vendor` (
     `phoneNumber` varchar(30) DEFAULT NULL,
     PRIMARY KEY (`vendorId`)
 );
+
+-- ------------------------------
+-- Table structure for `position`
+-- ------------------------------
+DROP TABLE IF EXISTS `position`;
+CREATE TABLE `position` (
+	`positionId` int(5) NOT NULL AUTO_INCREMENT,
+    `title` varchar(30) NOT NULL,
+    PRIMARY KEY (`positionId`)
+);
+
+-- ------------------------------
+-- Table structure for `musician`
+-- ------------------------------
+DROP TABLE IF EXISTS `musician`;
+CREATE TABLE `misician` (
+	`musicianId` int(5) NOT NULL AUTO_INCREMENT,
+    `name` varchar(30) NOT NULL,
+    PRIMARY KEY (`musicianId`)
+);
