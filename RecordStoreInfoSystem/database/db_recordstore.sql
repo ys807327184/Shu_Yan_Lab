@@ -38,8 +38,8 @@ CREATE TABLE `vendor` (
 -- ------------------------------
 -- Table structure for `position`
 -- ------------------------------
-DROP TABLE IF EXISTS `position`;
-CREATE TABLE `position` (
+DROP TABLE IF EXISTS `positions`;
+CREATE TABLE `positions` (
 	`positionId` int(5) NOT NULL AUTO_INCREMENT,
     `title` varchar(30) NOT NULL,
     PRIMARY KEY (`positionId`)
@@ -104,4 +104,81 @@ CREATE TABLE `track` (
     `length` time NOT NULL,
     PRIMARY KEY (`trackId`),
     CONSTRAINT FK_TrackAlbum FOREIGN KEY (albumId) REFERENCES album(albumId)
+);
+
+-- ------------------------------------------
+-- Table structure for `allocateCompanyAlbum`
+-- ------------------------------------------
+DROP TABLE IF EXISTS `allocateCompanyAlbum`;
+CREATE TABLE `allocateCompanyAlbum` (
+	`companyAlbumId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`companyAlbumId`),
+    CONSTRAINT FK_CompanyAlbum FOREIGN KEY (albumId) REFERENCES album(albumId),
+    CONSTRAINT FK_AlbumCompany FOREIGN KEY (companyId) REFERENCES company(companyId)
+);
+
+-- ----------------------------------------------
+-- Table structure for `allocatePositionMusician`
+-- ----------------------------------------------
+DROP TABLE IF EXISTS `allocatePositionMusician`;
+CREATE TABLE `allocatePositionMusician` (
+	`positionMusicianId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`positionMusicianId`),
+    CONSTRAINT FK_PositionMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_MusicianPosition FOREIGN KEY (positionId) REFERENCES positions(positionId)
+);
+
+-- ---------------------------
+-- Table struture for `singer`
+-- ---------------------------
+DROP TABLE IF EXISTS `singer`;
+CREATE TABLE `singer` (
+	`singerId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`singerId`),
+    CONSTRAINT FK_SingerMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_SingerTrack FOREIGN KEY (trackId) REFERENCES track(trackId)
+);
+
+-- ---------------------------
+-- Table struture for `featured`
+-- ---------------------------
+DROP TABLE IF EXISTS `featured`;
+CREATE TABLE `featured` (
+	`featuredId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`featuredId`),
+    CONSTRAINT FK_FeaturedMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_FeaturedTrack FOREIGN KEY (trackId) REFERENCES track(trackId)
+);
+
+-- ---------------------------
+-- Table struture for `lyric`
+-- ---------------------------
+DROP TABLE IF EXISTS `lyric`;
+CREATE TABLE `lyric` (
+	`lyricId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`lyricId`),
+    CONSTRAINT FK_LyricMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_LyricTrack FOREIGN KEY (trackId) REFERENCES track(trackId)
+);
+
+-- ---------------------------
+-- Table struture for `composer`
+-- ---------------------------
+DROP TABLE IF EXISTS `composer`;
+CREATE TABLE `composer` (
+	`composerId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`composerId`),
+    CONSTRAINT FK_ComposerMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_ComposerTrack FOREIGN KEY (trackId) REFERENCES track(trackId)
+);
+
+-- ---------------------------
+-- Table struture for `producer`
+-- ---------------------------
+DROP TABLE IF EXISTS `producer`;
+CREATE TABLE `producer` (
+	`producerId` int(5) NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (`producerId`),
+    CONSTRAINT FK_ProducerMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
+    CONSTRAINT FK_ProducerAlbum FOREIGN KEY (albumId) REFERENCES album(albumId)
 );
