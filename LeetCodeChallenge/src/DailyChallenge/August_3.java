@@ -27,6 +27,7 @@ public class August_3 {
 	//Version 1 
 	//Runtime beats 64.85%
 	//Memory usage beats 18.7%
+	/*
 	public int[] twoSum(int[] nums, int target) {
         int[] result = new int[2];
         HashMap<Integer, Integer> map = new HashMap<>();
@@ -42,4 +43,21 @@ public class August_3 {
         }
         return result;
     }
+    */
+	//Version 2
+	//Runtime beats 9.06%
+	//Memory usage beats 64.42%
+	public int[] twoSum(int[] nums, int target) {
+		int[] result = new int[2];
+		for (int i = 0; i < nums.length; i++) {
+			for (int j = 0; j < nums.length; j++) {
+				if (nums[i] + nums[j] == target && i != j) {
+					result[0] = i;
+					result[1] = j;
+					return result;
+				}
+			}
+		}
+		return result;
+	}
 }
