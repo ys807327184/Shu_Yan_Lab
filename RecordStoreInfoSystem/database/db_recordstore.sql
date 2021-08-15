@@ -182,3 +182,37 @@ CREATE TABLE `producer` (
     CONSTRAINT FK_ProducerMusician FOREIGN KEY (musicianId) REFERENCES musician(musicianId),
     CONSTRAINT FK_ProducerAlbum FOREIGN KEY (albumId) REFERENCES album(albumId)
 );
+
+-- -----------------------------
+-- Table Structure for `account`
+-- -----------------------------
+DROP TABLE IF EXISTS `accounts`;
+CREATE TABLE `accounts` (
+	`accountId` int(5) NOT NULL AUTO_INCREMENT,
+    `username` varchar(30) NOT NULL,
+    `password` varchar(30) NOT NULL,
+    PRIMARY KEY (`accountId`)
+);
+
+-- -----------------------------
+-- Table Structure for `invoice`
+-- -----------------------------
+DROP TABLE IF EXISTS `invoice`;
+CREATE TABLE `invoice` (
+	`invoiceId` int(5) NOT NULL AUTO_INCREMENT,
+    `date` date NOT NULL,
+    PRIMARY KEY (`invoiceId`),
+    CONSTRAINT FK_InvoiceAccount FOREIGN KEY (accountId) REFERENCES accounts(accountId)
+);
+
+-- ---------------------------
+-- Table struture for `sell`
+-- ---------------------------
+DROP TABLE IF EXISTS `sell`;
+CREATE TABLE `sell` (
+	`sellId` int(5) NOT NULL AUTO_INCREMENT,
+    `number` int(5) NOT NULL,
+    PRIMARY KEY (`sellId`),
+    CONSTRAINT FK_SellInvoice FOREIGN KEY (invoiceId) REFERENCES invoice(invoiceId),
+    CONSTRAINT FK_SellAlbum FOREIGN KEY (albumId) REFERENCES album(albumId)
+);
