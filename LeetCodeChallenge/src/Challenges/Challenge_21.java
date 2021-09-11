@@ -20,9 +20,40 @@ Developed by: Shu Yan
  */
 public class Challenge_21 {
 	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
-		ListNode curr = l1, prev = null, next = l1.next;
-		while (l2 != null) {
-			
+		ListNode result, curr, temp;
+		if (l1 == null && l2 == null) {
+			return l1;
+		} else if (l1 == null && l2 != null) {
+			return l2;
+		} else if (l1 != null && l2 == null) {
+			return l1;
+		} else if (l1.val > l2.val) {
+			result = l2;
+			l2 = l2.next;
+		} else {
+			result = l1;
+			l1 = l1.next;
 		}
+		curr = result;
+		while (true) {
+			if (l1 == null && l2 != null) {
+				curr.next = l2;
+				break;
+			} else if (l1 != null && l2 == null) {
+				curr.next = l1;
+				break;
+			} else if (l1 == null & l2 == null){
+				break;
+			} else if (l1.val > l2.val) {
+				curr.next = l2;
+				l2 = l2.next;
+				curr = curr.next;
+			} else {
+				curr.next = l1;
+				l1 = l1.next;
+				curr = curr.next;
+			}
+		}
+		return result;
 	}
 }
